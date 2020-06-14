@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState,useReducer} from 'react';
+import Parent from './Parent'
+import Reducer from './Reducer'
+import NumberContext from './NumberContext'
 import './App.css';
 
 function App() {
+  let [globalState, dispatch] = useReducer(Reducer,44)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <NumberContext.Provider value={[globalState,dispatch]}>
+    <div >
+      App
+      <Parent></Parent>
     </div>
+    </NumberContext.Provider>
   );
 }
 
